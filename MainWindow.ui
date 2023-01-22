@@ -26,23 +26,26 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#MainWindow {
-background-image:url(:/table/table.jpg)
+background-image:url(:/table/table.png)
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QPushButton" name="playBtn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>450</y>
-      <width>770</width>
+      <x>210</x>
+      <y>522</y>
+      <width>181</width>
       <height>70</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>32</pointsize>
-      <bold>false</bold>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -55,17 +58,20 @@ background-image:url(:/table/table.jpg)
    <widget class="QPushButton" name="instrBtn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>520</y>
-      <width>771</width>
-      <height>71</height>
+      <x>410</x>
+      <y>522</y>
+      <width>201</width>
+      <height>70</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>20</pointsize>
-      <bold>false</bold>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>INSTRUCTION</string>
@@ -80,7 +86,7 @@ background-image:url(:/table/table.jpg)
       <x>10</x>
       <y>10</y>
       <width>781</width>
-      <height>421</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="font">
@@ -90,7 +96,7 @@ background-image:url(:/table/table.jpg)
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string/>
@@ -116,6 +122,9 @@ background-image:url(:/table/table.jpg)
       <strikeout>false</strikeout>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -134,6 +143,9 @@ background-image:url(:/table/table.jpg)
       <pointsize>24</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string/>
@@ -268,6 +280,12 @@ background-image:url(:/table/table.jpg)
       <bold>true</bold>
      </font>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -287,6 +305,9 @@ background-image:url(:/table/table.jpg)
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -305,6 +326,9 @@ background-image:url(:/table/table.jpg)
       <pointsize>21</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string/>
@@ -511,25 +535,6 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="startBtn">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>490</y>
-      <width>770</width>
-      <height>70</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>32</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>DOBIERZ KARTY</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_currently_money">
     <property name="geometry">
      <rect>
@@ -545,6 +550,9 @@ background-repeat: none;
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -552,20 +560,27 @@ background-repeat: none;
    <widget class="QLabel" name="label_result">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>370</y>
-      <width>381</width>
-      <height>71</height>
+      <x>210</x>
+      <y>250</y>
+      <width>371</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe Print</family>
       <pointsize>20</pointsize>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:  #FF4949;</string>
+    </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_card_player2">
@@ -758,19 +773,19 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="zakoncz_Btn">
+   <widget class="QPushButton" name="exit_Btn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>520</y>
-      <width>771</width>
+      <x>400</x>
+      <y>522</y>
+      <width>181</width>
       <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>32</pointsize>
-      <bold>false</bold>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -792,6 +807,9 @@ background-repeat: none;
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -799,9 +817,9 @@ background-repeat: none;
    <widget class="QPushButton" name="betBtn">
     <property name="geometry">
      <rect>
-      <x>439</x>
+      <x>679</x>
       <y>290</y>
-      <width>221</width>
+      <width>111</width>
       <height>70</height>
      </rect>
     </property>
@@ -815,17 +833,13 @@ background-repeat: none;
      <string>bet</string>
     </property>
    </widget>
-   <zorder>label_result</zorder>
    <zorder>label_money</zorder>
-   <zorder>zakoncz_Btn</zorder>
    <zorder>label_currently_money</zorder>
-   <zorder>instrBtn</zorder>
    <zorder>label_name_player</zorder>
    <zorder>label_name_crupier</zorder>
    <zorder>standBtn</zorder>
    <zorder>label_points_player</zorder>
    <zorder>label_points_croupier</zorder>
-   <zorder>startBtn</zorder>
    <zorder>hitBtn</zorder>
    <zorder>label_instruction</zorder>
    <zorder>doubleDownBtn</zorder>
@@ -844,15 +858,18 @@ background-repeat: none;
    <zorder>label_card_croupier6</zorder>
    <zorder>label_bet</zorder>
    <zorder>betBtn</zorder>
+   <zorder>exit_Btn</zorder>
+   <zorder>instrBtn</zorder>
    <zorder>playBtn</zorder>
+   <zorder>label_result</zorder>
    <zorder>money10Btn</zorder>
    <zorder>money20Btn</zorder>
    <zorder>money50Btn</zorder>
    <zorder>money100Btn</zorder>
-   <zorder>money1000Btn</zorder>
-   <zorder>money500Btn</zorder>
-   <zorder>money300Btn</zorder>
    <zorder>money200Btn</zorder>
+   <zorder>money300Btn</zorder>
+   <zorder>money500Btn</zorder>
+   <zorder>money1000Btn</zorder>
   </widget>
  </widget>
  <resources/>

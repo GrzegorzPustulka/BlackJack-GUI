@@ -5,26 +5,16 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("BLACK JACK BY GRZEGORZ PUSTULKA");
 
-    this->setWindowTitle("BLACK JACK");
-
-    ui->hitBtn->setVisible(false);
     ui->standBtn->setVisible(false);
+    ui->hitBtn->setVisible(false);
     ui->doubleDownBtn->setVisible(false);
     ui->insuranceBtn->setVisible(false);
+    ui->exit_Btn->setVisible(false);
 
-    ui->startBtn->setVisible(false);
-    ui->zakoncz_Btn->setVisible(false);
-    ui->betBtn->setVisible(false);
-
-    ui->money10Btn->setVisible(false);
-    ui->money20Btn->setVisible(false);
-    ui->money50Btn->setVisible(false);
-    ui->money100Btn->setVisible(false);
-    ui->money200Btn->setVisible(false);
-    ui->money300Btn->setVisible(false);
-    ui->money500Btn->setVisible(false);
-    ui->money1000Btn->setVisible(false);
+    hideMoneyBtn();
+    ui->label_currently_money->clear();
 }
 
 MainWindow::~MainWindow()
@@ -38,13 +28,14 @@ void MainWindow::on_playBtn_clicked()
     ui->label_instruction->hide();
     ui->playBtn->hide();
     ui->instrBtn->hide();
-    ui->zakoncz_Btn->setVisible(false);
-
-    ui->label_currently_money->setText((QString("You have ")+ QString::number(player1.getCurrentlyMoney())) + QString(" $"));
-    ui->label_bet->setText("");
-    ui->label_money->setText(QString("How much money\ndo you want to bet?"));
+    ui->label_bet->clear();
+    ui->label_points_croupier->clear();
+    ui->label_points_player->clear();
+    ui->label_result->clear();
     ui->label_money->setVisible(true);
-    ui->label_result->setText("");
+    ui->exit_Btn->setVisible(false);
+    ui->label_money->setText(QString("How much money\ndo you want to bet?"));
+    ui->label_currently_money->setText((QString("You have ")+ QString::number(player1.getCurrentlyMoney())) + QString(" $"));
 
     ui->money10Btn->setVisible(true);
     ui->money20Btn->setVisible(true);
@@ -68,21 +59,16 @@ void MainWindow::on_playBtn_clicked()
     ui->label_card_croupier5->clear();
     ui->label_card_croupier6->clear();
 
-    ui->label_points_croupier->setText("");
-    ui->label_points_player->setText("");
 }
 
-void MainWindow::on_startBtn_clicked()
+void MainWindow::on_betBtn_clicked()
 {
+    hideMoneyBtn();
     croupier.clearHand();
     player1.clearHand();
-    ui->startBtn->setVisible(false);
+
     ui->label_name_player->setText(QString("PLAYER"));
     ui->label_name_crupier->setText(QString("CROUPIER"));
-
-    ui->hitBtn->setVisible(true);
-    ui->standBtn->setVisible(true);
-    ui->doubleDownBtn->setVisible(true);
 
     burn = false;
     boolNewRound = false;
@@ -97,6 +83,10 @@ void MainWindow::on_startBtn_clicked()
     ui->label_points_player->setText(QString::number(player1.countPoints()) + QString(" Points"));
     croupier.showHandDeck(1 , ui);
 
+
+    ui->hitBtn->setVisible(true);
+    ui->standBtn->setVisible(true);
+    ui->doubleDownBtn->setVisible(true);
     if(croupier.checkInsurance())
         ui->insuranceBtn->setVisible(true);
     else
@@ -118,23 +108,19 @@ void MainWindow::on_standBtn_clicked()
         adds = croupier.lessOrMore(&decks);
 
         if(adds > 0) {
-            if (player1.howManyCardsInHand() == 2 && player1.countPoints() == 21){
+            if (player1.howManyCardsInHand() == 2 && player1.countPoints() == 21) {
                 player1.showHandDeck(2, ui);
                 ui->label_points_player->setText(QString::number(player1.countPoints()) + QString(" Punktow"));
                 ui->label_result->setText(QString("BLACK JACK"));
                 player1.setCurrentlyMoney(player1.getCurrentlyMoney() + 2.5* player1.getMoneyOnBet());
                 ui->label_currently_money->setText((QString("You have ")+ QString::number(player1.getCurrentlyMoney())) + QString(" $"));
-
                 boolNewRound = true;
             }
             croupier.showHandDeck(2 + adds,ui);
             ui->label_points_croupier->setText(QString::number(croupier.countPoints()) + QString(" Points"));
 
-            if (game.burn(&croupier, &player1,ui) && boolNewRound == false) {
-
+            if (game.burn(&croupier, &player1,ui) && boolNewRound == false)
                 burn = true;
-            }
-
         }
 
         if(burn == false && boolNewRound == false){
@@ -144,8 +130,6 @@ void MainWindow::on_standBtn_clicked()
                 player1.setCurrentlyMoney(player1.getCurrentlyMoney() + 2.5* player1.getMoneyOnBet());
                 ui->label_points_player->setText(QString::number(player1.countPoints()) + QString(" Points"));
                 ui->label_result->setText(QString("BLACK JACK"));
-
-
             }
             else if((player1.howManyCardsInHand() == 2 && player1.countPoints() == 21) && (croupier.countPoints() != 21 || croupier.howManyCardsInHand() != 2)){
                 player1.showHandDeck(2,ui);
@@ -153,8 +137,6 @@ void MainWindow::on_standBtn_clicked()
                 ui->label_result->setText(QString("BLACK JACK"));
                 player1.setCurrentlyMoney(player1.getCurrentlyMoney() + 2.5* player1.getMoneyOnBet());
                 ui->label_currently_money->setText((QString("You have ")+ QString::number(player1.getCurrentlyMoney())) + QString(" $"));
-
-
             }
             else
                 game.endResult(&player1, &croupier, hits, adds,ui);
@@ -169,9 +151,7 @@ void MainWindow::on_hitBtn_clicked(){
     player1.showHandDeck(2+hits,ui);
 
     if (game.burn(&player1,ui))
-    {
         newRound();
-    }
     else {
         ui->doubleDownBtn->setVisible(false);
         ui->insuranceBtn->setVisible(false);
@@ -186,20 +166,18 @@ void MainWindow::on_doubleDownBtn_clicked(){
 
     if(player1.getCurrentlyMoney() < 0){
         this->close();
-        QMessageBox::information(nullptr,"Info","Probowales oszukac krupiera.\nNie miales tyle gotowki.\nZostajesz wyrzucony od stolu.");
+        QMessageBox::information(nullptr,"Info","You tried to cheat the croupier.\nYou didn't have that much cash.\nYou are kicked off the table.");
     }
 
     player1.addCards(1 , &decks);
     player1.showHandDeck(3, ui);
 
-    if (game.burn(&player1, ui)){
+    if (game.burn(&player1, ui))
         boolNewRound = true;
-    }
     else{
 
         croupier.showHandDeck(2,ui);
         ui->label_points_croupier->setText(QString::number(croupier.countPoints()) + QString(" Points"));
-
         adds = croupier.lessOrMore(&decks);
 
         if (adds > 0) {
@@ -212,16 +190,22 @@ void MainWindow::on_doubleDownBtn_clicked(){
             }
         }
     }
-    if(boolNewRound == false){
+
+    if(boolNewRound == false)
         game.endResultDoubleDown(&player1, &croupier, 1, adds,ui);
-    }
+
     newRound();
 }
 
-void MainWindow::on_zakoncz_Btn_clicked(){
+void MainWindow::on_exit_Btn_clicked(){
     this->close();
     QString information = "You finished the game with " + QString::number(player1.getCurrentlyMoney()) + "$";
     QMessageBox::information(nullptr,"Info",information);
+
+    Bazowa *bazowa = new Pochodna();
+    Pochodna *pochodna = new Pochodna();
+    bazowa->fun();
+    pochodna->fun();
 }
 
 
@@ -231,8 +215,7 @@ void MainWindow::newRound(){
     ui->doubleDownBtn->setVisible(false);
     ui->insuranceBtn->setVisible(false);
     ui->playBtn->setVisible(true);
-    ui->zakoncz_Btn->setVisible(true);
-
+    ui->exit_Btn->setVisible(true);
     player1.setMoneyOnBet(0);
 }
 
@@ -242,7 +225,7 @@ void MainWindow::on_insuranceBtn_clicked(){
     ui->label_bet->setText((QString("In bet ")+ QString::number(2*player1.getMoneyOnBet())) + QString(" $"));
     if(player1.getCurrentlyMoney() < 0){
         this->close();
-        QMessageBox::information(nullptr,"Info","Probowales oszukac krupiera.\nNie miales tyle gotowki.\nZostajesz wyrzucony od stolu.");
+        QMessageBox::information(nullptr,"Info","You tried to cheat the croupier.\nYou didn't have that much cash.\nYou are kicked off the table.");
     }
     insurance = true;
     ui->insuranceBtn->setVisible(false);
@@ -260,7 +243,6 @@ void MainWindow::hideMoneyBtn(){
     ui->money500Btn->setVisible(false);
     ui->betBtn->setVisible(false);
 
-    ui->startBtn->setVisible(true);
     ui->label_money->hide();
     ui->label_currently_money->setText((QString("You have ")+ QString::number(player1.getCurrentlyMoney())) + QString(" $"));
 }
@@ -284,10 +266,6 @@ void MainWindow::on_instrBtn_clicked()
                                "	            bedzie miał Black Jacka to dostaniemy zwrot stawki i ubezpieczenie ktore postawilismy.\n"
                                "	            Jesli rozdajacy nie ma Black Jacka, gracz traci ubezpieczenie i rozdanie jest rozgrywane do konca"));
     ui->instrBtn->hide();
-}
-
-void MainWindow::on_betBtn_clicked(){
-        hideMoneyBtn();
 }
 
 void MainWindow::on_money10Btn_clicked()

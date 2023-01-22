@@ -60,7 +60,6 @@
         <file>chips/300.png</file>
         <file>chips/500.png</file>
         <file>chips/1000.png</file>
-        <file>table/table.jpg</file>
         <file>chips/10hover.png</file>
         <file>chips/20hover.png</file>
         <file>chips/50hover.png</file>
@@ -70,5 +69,6 @@
         <file>chips/500hover.png</file>
         <file>chips/1000hover.png</file>
         <file>buttons/button.png</file>
+        <file>table/table.png</file>
     </qresource>
 </RCC>

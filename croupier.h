@@ -3,84 +3,98 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "Deck.h"
+#include <QMessageBox>
 
 class Croupier: public Deck, public QMainWindow
 {
 private:
+    /**
+        @brief The number of 'ACE characters in the handCroupier
+    */
     int how_many_as;
 
 protected:
+
+    /**
+        @brief The cards held by the croupier
+    */
     std::vector<QString> handCroupier;
 
 public:
 
+    /**
+        @brief Construct a new Croupier object
+    */
     Croupier();
+
+    /**
+        @brief Destroy the Croupier object
+    */
     ~Croupier();
+
+    /**
+        @brief Get the number of 'A' characters in the string
+        @return int The number of 'A' characters in the string
+     */
     int getHowManyAs() { return this->how_many_as; };
+
+    /**
+        @brief Set the number of 'A' characters in the string
+        @param how_many_as The number of 'A' characters in the string
+    */
     void setHowManyAs(int how_many_as) { this->how_many_as = how_many_as; };
-    void howManyAs(int how_many_as) { this->how_many_as = how_many_as; };
+
     /**
-     * @brief Dodaje określoną liczbę kart do ręki krupiera.
-     * Funkcja dodaje podaną liczbę kart z talii do ręki krupiera i usuwa je z talii. Jeśli w talii nie ma wystarczającej liczby kart,
-     * wyrzuca wyjątek std::logic_error z odpowiednim komunikatem.
-     * @param count Liczba kart do dodania.
-     * @param decks wskaźnik na obiekt decks
-     * @throws std::logic_error Jeśli w talii nie ma wystarczającej liczby kart.
-     */
+        @brief Add the specified number of cards from the given deck to the Croupier's hand.
+        @param count The number of cards to add.
+        @param decks The deck to add the cards from.
+    */
     void addCards(int count, Deck* decks);
+
     /**
-     * @brief Wyświetla określoną liczbę kart z ręki krupiera.
-     * Funkcja wyświetla na standardowym wyjściu określoną liczbę kart z ręki krupiera.
-     * @param count Liczba kart do wyświetlenia.
-     * @param decks wskaźnik na obiekt decks
-     */
+        @brief Show the specified number of cards from the Croupier's hand on the UI.
+        @param count The number of cards to show.
+        @param ui The UI object where the cards will be shown.
+    */
     void showHandDeck(int count,Ui::MainWindow *ui);
+
     /**
-     * @brief Oblicza liczbę punktów w kartach krupiera.
-     * Funkcja przelatuje przez całą talię krupiera i na podstawie nazw kart przypisuje im odpowiednią liczbę punktów.
-     * W przypadku Asów, funkcja domyślnie przypisuje im wartość 11 punktów, ale jeśli ogólna liczba punktów przekroczy 21,
-     * to Asy są traktowane jako 1 punkt, aby zmniejszyć liczbę punktów do 21 lub mniej.
-     * @return Liczba punktów w kartach krupiera.
-     */
+        @brief Count the total points of the cards in the Croupier's hand.
+        @return The total points of the Croupier's hand.
+    */
     int countPoints();
+
     /**
-     * @brief Określa ile kart należy dodać krupierowi, aby jego punktacja była większa od 16.
-     * @param decks Wskaźnik na talię z której karty będą pobierane.
-     * @return Liczba kart, które należy dodać krupierowi.
-     */
+        @brief Check if the croupier hand point is less than or equal to 16. If so, add cards until it's greater than 16
+        @param decks The deck to add the cards from.
+        @return The number of cards added to the croupier hand
+    */
     int lessOrMore(Deck* decks);
+
     /**
-     * @brief Sprawdza czy krupier ma asa na ręce.
-     * Metoda sprawdza czy krupier ma asa na ręce. Jeśli tak, zwraca wartość true,
-     * w przeciwnym wypadku zwraca wartość false.
-     * @return Wartość true, jeśli krupier ma asa, w przeciwnym wypadku wartość false.
-     */
+        @brief Check if the first card of the croupier's hand is an Ace.
+        @return true if the first card of the croupier's hand is an Ace, false otherwise.
+    */
     bool checkInsurance();
+
     /**
-     * @brief Czyści zawartość kontenera z kartami Krupiera
-     */
+        @brief Clear the croupier's hand.
+    */
     void clearHand();
+
     /**
-     * @brief Wypisuje informację o odchodzeniu krupiera od stolu.
-     *
-     * Metoda wypisuje na standardowe wyjście informację o odchodzeniu krupiera od stolu.
-     * Wypisana zostaje nazwa krupiera.
-     */
-    void goodbay();
+        @brief Returns the number of cards in the croupier's hand
+        @return number of cards in the croupier's hand
+    */
+    size_t howManyCardsInHand();
+
     /**
-     * @brief Zwraca liczbę kart w ręce krupiera.
-     * @return Liczba kart w ręce krupiera.
-     */
-    int howManyCardsInHand();
-    /**
-     * @brief Sprawdza, czy łańcuch znaków jest podciągiem innego łańcucha.
-     * Funkcja szablonowa sprawdza, czy podany łańcuch znaków @p needle jest podciągiem innego łańcucha @p haystack.
-     * Używa funkcji std::basic_string::find() z biblioteki STL do wyszukiwania podciągu.
-     * @tparam T Typ znaków łańcucha (może być dowolny typ charakterystyczny).
-     * @param haystack Łańcuch, w którym szukamy podciągu.
-     * @param needle Szukany podciąg.
-     * @return @c true, jeśli @p needle jest podciągiem @p haystack, @c false w przeciwnym razie.
-     */
+        @brief Check if the given needle is a substring of the given haystack.
+        @tparam T The type of the characters in the strings.
+        @param haystack The string to search in.
+        @param needle The substring to search for.
+        @return true if the needle is a substring of the haystack, false otherwise.
+    */
     template<class T>
     bool IsSubstring(const std::basic_string<T>& haystack, const T* needle)
     {

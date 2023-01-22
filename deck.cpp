@@ -30,10 +30,10 @@ Deck::Deck() {
         {"Jack-Spades", 10},  {"Jack-Hearts",  10}, {"Jack-Clubs",  10}, {"Jack-Diamonds", 10},
         {"Queen-Spades",10},  {"Queen-Hearts", 10}, {"Queen-Clubs", 10}, {"Queen-Diamonds",10},
         {"King-Spades", 10},  {"King-Hearts",  10}, {"King-Clubs",  10}, {"King-Diamonds", 10},
-        {"As-Spades",  11,},  {"As-Hearts",    11}, {"As-Clubs",    11}, {"As-Diamonds",   11}
+        {"As-Spades",   11},  {"As-Hearts",    11}, {"As-Clubs",    11}, {"As-Diamonds",   11}
     };
 
-    //stworzenie mapy zdjec
+    // create photo maps
     for (auto const& [key, value] : deckPoint) {
         QString imgPath = ":/cards/" + key + ".png";
         photos[key] = QPixmap(imgPath);
@@ -41,8 +41,8 @@ Deck::Deck() {
 
 
     srand(time(NULL));
-    //howManyDeck = 1;
-    howManyDeck = (rand() % 8) + 1;
+    howManyDeck = 1;
+    //howManyDeck = (rand() % 8) + 1;
     createDeck();
     shuffle();
 }
@@ -61,15 +61,17 @@ void Deck::shuffle() {
 }
 
 void Deck::removeCardsFromDeck(int count) {
+
     for (int i = 0; i < count; ++i)
         if(howManyCards() != 0)
             this->deck.erase(this->deck.begin());
-        else
+        else{
+            QMessageBox::information(nullptr,"Info","No cards in the deck");
             exit(0);
+        }
 }
 
 size_t Deck::howManyCards() {
     size_t size = this->deck.size();
     return size;
 }
-

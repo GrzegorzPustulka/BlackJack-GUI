@@ -14,8 +14,10 @@ void Croupier::addCards(int count, Deck* decks) {
         if(decks->howManyCards() != 0)
             handCroupier.push_back(decks->deck[i]);
         else
+        {
+            QMessageBox::information(nullptr,"Info","the cards in the deck are over");
             exit(0);
-
+        }
     }
     decks->removeCardsFromDeck(count);
 }
@@ -24,16 +26,14 @@ void Croupier::showHandDeck(int count, Ui::MainWindow *ui) {
     std::vector<QLabel*> labels = {ui->label_card_croupier1, ui->label_card_croupier2, ui->label_card_croupier3,ui->label_card_croupier4,ui->label_card_croupier5,ui->label_card_croupier6};
 
     for(int i = 0; i < count;i ++) {
-            labels[i]->setPixmap(photos[handCroupier[i]]);
-        }
-
+        labels[i]->setPixmap(photos[handCroupier[i]]);
+    }
 }
 
 int Croupier::countPoints() {
-
     int points = 0;
 
-    for (QString& card :	handCroupier) {
+    for (QString& card : handCroupier) {
         for (auto& element : deckPoint) {
             if (card == element.first)
             {
@@ -75,8 +75,8 @@ bool Croupier::checkInsurance() {
         return false;
 }
 
-int Croupier::howManyCardsInHand(){
-    int size = handCroupier.size();
+size_t Croupier::howManyCardsInHand(){
+    size_t size = handCroupier.size();
     return size;
 }
 

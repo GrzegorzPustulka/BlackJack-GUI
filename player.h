@@ -11,102 +11,203 @@
 class Player: public Deck, public QMainWindow
 {
 private:
+
+    /**
+        * @brief The cards held by the player
+    */
     std::vector<QString> handPlayer;
-    void initMoney();
+
+    /**
+        * @brief The start amount of money
+    */
     int startMoney;
+
+    /**
+        * @brief The current amount of money
+    */
     int currentlyMoney;
+
+    /**
+        * @brief The amount of money on bet
+    */
     int moneyOnBet;
+
+    /**
+        * @brief The number of 'A' characters in the handPlayer
+    */
     int how_many_as;
+
+    /**
+        * @brief Initializes the money for a player object
+        *
+        * This function initializes the player's account to 1000 and writes this value to a binary file named "fileBin.bin" using an ofstream object. Then it sets the account variable to 0 and reads the value from the binary file using an ifstream object and assigns it to the player's starting and current money values (this->startMoney and this->currentlyMoney). It also sets the player's money on bet to 0.
+        *
+        * @param None
+        * @return None
+    */
+    void initMoney();
+
 public:
+
+    /**
+        * @brief Construct a new Player object
+    */
     Player();
+
+    /**
+        * @brief Destroy the Player object
+    */
     ~Player();
 
+    /**
+        * @brief Get the start amount of money
+        *
+        * @return int The start amount of money
+    */
     int getStartMoney() { return this->startMoney; };
+
+    /**
+        * @brief Set the start amount of money
+        *
+        * @param startMoney The start amount of money
+    */
     void setStartMoney(int startMoney) { this->startMoney=startMoney; };
+
+    /**
+        * @brief Get the current amount of money
+        *
+        * @return int The current amount of money
+    */
     int getCurrentlyMoney() { return this->currentlyMoney; };
+
+    /**
+        * @brief Set the current amount of money
+        *
+        * @param currentlyMoney The current amount of money
+    */
     void setCurrentlyMoney(int currentlyMoney) { this->currentlyMoney = currentlyMoney; };
+
+    /**
+        * @brief Get the amount of money on bet
+        *
+        * @return int The amount of money on bet
+    */
     int getMoneyOnBet() { return this->moneyOnBet; };
+
+    /**
+        * @brief Set the amount of money on bet
+        *
+        * @param moneyOnBet The amount of money on bet
+    */
     void setMoneyOnBet(int moneyOnBet) { this->moneyOnBet = moneyOnBet; };
+
+    /**
+        * @brief Get the number of 'ACE' characters in the handCroupier
+        *
+        * @return int The number of 'ACE' characters in the handCroupier
+    */
     int getHowManyAs() { return this->how_many_as; };
+
+    /**
+        * @brief Set the number of 'ACE' characters in the handCroupier
+        *
+        * @param how_many_as The number of 'ACE' characters in the handCroupier
+    */
     void setHowManyAs(int how_many_as) { this->how_many_as = how_many_as; };
 
     /**
-     * @brief Dodaje określoną liczbę kart do ręki gracza.
-     * Funkcja dodaje podaną liczbę kart z talii do ręki gracza i usuwa je z talii. Jeśli w talii nie ma wystarczającej liczby kart,
-     * wyrzuca wyjątek std::logic_error z odpowiednim komunikatem.
-     * @param count Liczba kart do dodania.
-     * @param decks wskaźnik na obiekt decks
-     * @throws std::logic_error Jeśli w talii nie ma wystarczającej liczby kart.
-     */
+        * @brief Add cards to player's hand
+        *
+        * This function adds a specified number of cards from a deck to the player's hand. If the deck runs out of cards, the player's current money is updated with the money on bet and the game ends.
+        *
+        * @param count The number of cards to add to the player's hand
+        * @param decks Pointer to the Deck object from which the cards will be drawn
+        * @return None
+    */
     void addCards(int count, Deck* decks);
-    /**
-     * @brief Wyświetla określoną liczbę kart z ręki gracza.
-     * Funkcja wyświetla na standardowym wyjściu określoną liczbę kart z ręki gracza.
-     * @param count Liczba kart do wyświetlenia.
-     * @param decks wskaźnik na obiekt decks
-     */
-    void showHandDeck(int count, Ui::MainWindow *ui);
-    /**
-     * @brief Oblicza liczbę punktów w kartach gracza.
-     * Funkcja przelatuje przez całą talię gracza i na podstawie nazw kart przypisuje im odpowiednią liczbę punktów.
-     * W przypadku Asów, funkcja domyślnie przypisuje im wartość 11 punktów, ale jeśli ogólna liczba punktów przekroczy 21,
-     * to Asy są traktowane jako 1 punkt, aby zmniejszyć liczbę punktów do 21 lub mniej.
-     * @return Liczba punktów w kartach gracza.
-     */
-    int countPoints();
-    /**
-     * @brief Gracz obstawia określoną kwotę pieniędzy
-     * Gracz wybiera kwotę pieniędzy, którą chce postawić. Musi być to liczba podzielna przez 10.
-     * Jeśli gracz próbuje postawić więcej pieniędzy niż posiada, zostaje wyrzucony z gry.
-     * @pre Gracz posiada przynajmniej 10 jednostek monetarnej jednostki.
-     * @post Gracz traci postawioną kwotę pieniędzy.
-     * @exception exit(1) Gracz próbuje oszukać krupiera lub próbuje postawić więcej pieniędzy niż posiada.
-     */
-    void bet(int money, Ui::MainWindow *ui);
-    /**
-     * @brief Czyści zawartość kontenera z kartami gracza
-     */
-    void clearHand();
-    /**
-     * @brief Kończy grę w przypadku braku środków finansowych gracza
-     * @param money Obecne środki finansowe gracza
-     */
-    void gameOver(int money);
-    /**
-     * @brief Wypisuje informację o odchodzeniu gracza od stolu.
-     *
-     * Metoda wypisuje na standardowe wyjście informację o odchodzeniu gracza od stolu.
-     * Wypisana zostaje nazwa gracza.
-     */
-    void goodbay();
-    /**
-     * @brief Zwraca liczbę kart w ręce gracza.
-     * @return Liczba kart w ręce gracza.
-     */
-    size_t howManyCardsInHand();
-    /**
-     * @brief Operator [] dla klasy Player
-     *
-     * @param idx Indeks (string)
-     * @return Wartość startMoney lub currentlyMoney w zależności od wartości idx
-     * @throw Wyjątek, jeśli idx nie jest równe "startMoney", "start", "currentlyMoney" lub "end" i zamyka program z błedem 1
-     */
-    int operator[](std::string idx);
 
     /**
-     * @brief Sprawdza, czy łańcuch znaków jest podciągiem innego łańcucha.
-     * Funkcja szablonowa sprawdza, czy podany łańcuch znaków @p needle jest podciągiem innego łańcucha @p haystack.
-     * Używa funkcji std::basic_string::find() z biblioteki STL do wyszukiwania podciągu.
-     * @tparam T Typ znaków łańcucha (może być dowolny typ charakterystyczny).
-     * @param haystack Łańcuch, w którym szukamy podciągu.
-     * @param needle Szukany podciąg.
-     * @return @c true, jeśli @p needle jest podciągiem @p haystack, @c false w przeciwnym razie.
-     */
+        * @brief Show player's hand on the screen
+        *
+        * This function displays a specified number of cards from the player's hand on the screen by updating the pixmap of a set of QLabel objects.
+        *
+        * @param count The number of cards to display from the player's hand
+        * @param ui Pointer to the MainWindow object which contains the QLabel objects to update
+        * @return None
+    */
+    void showHandDeck(int count, Ui::MainWindow *ui);
+
+    /**
+        * @brief Counts the total points of the player's hand
+        *
+        * This function iterates through the cards in the player's hand, and adds the corresponding point value to a total points variable.
+        * If a card is an Ace, it also increments a counter of the number of Aces in the hand.
+        * Finally, it checks if the total points is greater than 21, and if so, it subtracts 10 points for each Ace in the hand until the total points is less than or equal to 21.
+        *
+        * @param None
+        * @return An integer representing the total points of the player's hand
+    */
+    int countPoints();
+
+    /**
+        * @brief Place a bet
+        *
+        * This function allows the player to place a bet by adding a specified amount of money to the current money on bet.
+        * It also updates the current amount of money the player has and updates the bet label in the MainWindow UI
+        * if the player has less money than the bet, it shows an error message and the game will be closed.
+        *
+        * @param moneyOnBet The amount of money the player wants to bet
+        * @param ui Pointer to the MainWindow object which contains the label to update
+        * @return None
+    */
+    void bet(int money, Ui::MainWindow *ui);
+
+    /**
+        * @brief Clear player's hand
+        *
+        * This function clears the player's current hand by removing all elements from the handPlayer vector.
+        *
+        * @param None
+        * @return None
+    */
+    void clearHand();
+
+    /**
+        * @brief End the game
+        *
+        * This function checks if the player has run out of money and shows a message box with information about the end of the game and close the game.
+        *
+        * @param money The current amount of money the player has
+        * @return None
+    */
+    void gameOver(int money);
+
+    /**
+        * @brief Get the number of cards in player's hand
+        *
+        * This function returns the number of cards in the player's hand by getting the size of the handPlayer vector.
+        *
+        * @param None
+        * @return An integer representing the number of cards in the player's hand
+    */
+    size_t howManyCardsInHand();
+
+    /**
+        @brief Check if the given needle is a substring of the given haystack.
+        @tparam T The type of the characters in the strings.
+        @param haystack The string to search in.
+        @param needle The substring to search for.
+        @return true if the needle is a substring of the haystack, false otherwise.
+    */
     template<class T>
     bool IsSubstring(const std::basic_string<T>& haystack, const T* needle)
     {
         return haystack.find(needle) != std::basic_string<T>::npos;
     }
+
+    //to remove
+    int operator[](std::string idx);
+
 };
 
 #endif // PLAYER_H
