@@ -4,6 +4,16 @@ It is an implementation of the popular BlackJack casino game made in c++ using l
 
 ## Description
 
+After starting the game, we choose the amount of chips we want to bet in the game.
+We have several game options to choose from as in classic BlackJack:
+
+Stand: Take no more cards.
+Hit: Take another card.
+Double down: Double the wager, take exactly one more card, and then stand. 
+Insurance: It's a side bet, which is offered to the players when the dealer’s up card is an ace. Takes an additional half of the chips placed 
+           It insures the player against the dealer having a ‘blackjack’ and gives them a chance to break even on the hand, if the dealer’s
+           cards total 21.
+
 ## Screens shots
 
 <img
