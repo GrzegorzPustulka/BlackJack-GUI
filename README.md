@@ -15,6 +15,8 @@ Each card is counted by its value, but Jack, Queen, King is 10 points. An ace is
 
 <b>Insurance</b>: It's a side bet, which is offered to the players when the dealer’s up card is an ace. Takes an additional half of the chips plac                                  It insures the player against the dealer having a ‘blackjack’ and gives them a chance to break even on the hand, if the dealer’s                                cards total 21.
 
+## Counting money
+
 BlackJack is paid out as 250% of the bet placed. BlackJack is only when we have 2 cards (Ace and "10") and the croupier does not have BlackJack.
 If we are closer to 21 points than the dealer and nobody has gone over 21 points, we get 200% of our bet.
 
