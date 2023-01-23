@@ -7,13 +7,13 @@ It is an implementation of the popular BlackJack casino game made in c++ using Q
 The player decides what choice he wants to make. The croupier must stick to the set rules, when he has less than 17 points, he must draw additional cards.
 Each card is counted by its value, but Jack, Queen, King is 10 points. An ace is counted as 1 or 11, whichever is better for the player or the croupier
 
-<b>Stand</b>: Take no more cards.
+-<b>Stand</b>: Take no more cards.
 
-<b>Hit</b>: Take another card.
+-<b>Hit</b>: Take another card.
 
-<b>Double down</b>: Double the wager, take exactly one more card, and then stand.
+-<b>Double down</b>: Double the wager, take exactly one more card, and then stand.
 
-<b>Insurance</b>: It's a side bet, which is offered to the players when the dealer’s up card is an ace. Takes an additional half of the chips plac                                  It insures the player against the dealer having a ‘blackjack’ and gives them a chance to break even on the hand, if the dealer’s                                cards total 21.
+-<b>Insurance</b>: It's a side bet, which is offered to the players when the dealer’s up card is an ace. Takes an additional half of the chips plac                                  It insures the player against the dealer having a ‘blackjack’ and gives them a chance to break even on the hand, if the dealer’s                                cards total 21.
 
 ## Counting money
 
