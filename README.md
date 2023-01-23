@@ -7,7 +7,7 @@ It is an implementation of the popular BlackJack casino game made in c++ using l
 After starting the game, we choose the amount of chips we want to bet in the game.
 We have several game options to choose from as in classic BlackJack:
 
-Stand: Take no more cards.
+<b>Stand</b>: Take no more cards.
 
 Hit: Take another card.
 
