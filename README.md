@@ -34,14 +34,6 @@ If there is a tie we get 100% of the bet placed.
 ## Screens shots
 
 <img
-  src="/pictures/menu.png"
-  alt="Menu"
-  title="Black Jack Menu"
-  width="500"
-  height="375"
-  style="display: inline-block; margin: 0 auto">
-
-<img
   src="/pictures/bet.png"
   alt="bet"
   title="Black Jack bet"
