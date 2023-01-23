@@ -69,5 +69,7 @@
         <file>images/chips/1000.png</file>
         <file>images/chips/1000hover.png</file>
         <file>images/table/table.png</file>
+        <file>images/buttons/buttonBet.png</file>
+        <file>images/buttons/ButtonBetCover.png</file>
     </qresource>
 </RCC>
