@@ -6,7 +6,6 @@
 #include <player.h>
 #include <croupier.h>
 #include <game.h>
-#include <Polimorfizm.cpp>
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 

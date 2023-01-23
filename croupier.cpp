@@ -26,6 +26,10 @@ void Croupier::showHandDeck(int count, Ui::MainWindow *ui) {
     std::vector<QLabel*> labels = {ui->label_card_croupier1, ui->label_card_croupier2, ui->label_card_croupier3,ui->label_card_croupier4,ui->label_card_croupier5,ui->label_card_croupier6};
 
     for(int i = 0; i < count;i ++) {
+        if (i == 6) {
+            QMessageBox::information(nullptr,"Info","Suprise!!");
+            exit(0);
+        }
         labels[i]->setPixmap(photos[handCroupier[i]]);
     }
 }

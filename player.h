@@ -204,10 +204,6 @@ public:
     {
         return haystack.find(needle) != std::basic_string<T>::npos;
     }
-
-    //to remove
-    int operator[](std::string idx);
-
 };
 
 #endif // PLAYER_H

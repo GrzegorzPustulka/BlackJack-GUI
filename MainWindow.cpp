@@ -99,8 +99,8 @@ void MainWindow::on_standBtn_clicked()
     ui->label_points_croupier->setText(QString::number(croupier.countPoints()) + QString(" Points"));
 
     if (insurance && croupier.howManyCards() == 2 && croupier.countPoints() == 21) {
-            player1.setCurrentlyMoney(player1.getCurrentlyMoney() + 1.5* player1.getMoneyOnBet());
-            ui->label_result->setText(QString("You got\nINSURANCE"));
+            player1.setCurrentlyMoney(player1.getCurrentlyMoney() + 2.5* player1.getMoneyOnBet());
+            ui->label_result->setText(QString("INSURANCE"));
             ui->label_currently_money->setText((QString("You have ")+ QString::number(player1.getCurrentlyMoney())) + QString(" $"));
             boolNewRound = true;
     }
@@ -201,11 +201,6 @@ void MainWindow::on_exit_Btn_clicked(){
     this->close();
     QString information = "You finished the game with " + QString::number(player1.getCurrentlyMoney()) + "$";
     QMessageBox::information(nullptr,"Info",information);
-
-    Bazowa *bazowa = new Pochodna();
-    Pochodna *pochodna = new Pochodna();
-    bazowa->fun();
-    pochodna->fun();
 }
 
 

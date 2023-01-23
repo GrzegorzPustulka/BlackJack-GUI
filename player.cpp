@@ -11,15 +11,6 @@ Player::~Player() {
 
 void Player::initMoney() {
     int account = 1000;
-
-    std::ofstream file1Bin = std::ofstream("fileBin.bin", std::ios::binary);
-    file1Bin.write(reinterpret_cast<char*>(&account), sizeof(account));
-    file1Bin.close();
-
-    account = 0;
-    std::ifstream file2Bin = std::ifstream("fileBin.bin", std::ios::binary);
-    file2Bin.read(reinterpret_cast<char*>(&account), sizeof(account));
-    file2Bin.close();
     this->moneyOnBet = 0;
     this->startMoney = account;
     this->currentlyMoney = account;
@@ -42,6 +33,10 @@ void Player::showHandDeck(int count, Ui::MainWindow *ui) {
     std::vector<QLabel*> labels = {ui->label_card_player1, ui->label_card_player2, ui->label_card_player3,ui->label_card_player4,ui->label_card_player5,ui->label_card_player6};
 
     for(int i = 0; i < count;i ++) {
+            if (i == 6) {
+                QMessageBox::information(nullptr,"Info","Suprise");
+                exit(0);
+            }
             labels[i]->setPixmap(photos[handPlayer[i]]);
         }
 }
@@ -94,19 +89,5 @@ void Player::gameOver(int money){
 size_t Player::howManyCardsInHand(){
     size_t size = handPlayer.size();
     return size;
-}
-
-int Player::operator[](std::string idx){
-    try {
-        if (idx == "startMoney" || idx == "start")
-            return startMoney;
-        else if (idx == "currentlyMoney" || idx == "end")
-            return currentlyMoney;
-        else
-            throw std::invalid_argument("Invalid index: " + idx);
-    } catch (std::invalid_argument& e) {
-        std::cout << e.what() << std::endl;
-        return 0;
-    }
 }
 

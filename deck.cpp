@@ -41,8 +41,8 @@ Deck::Deck() {
 
 
     srand(time(NULL));
-    howManyDeck = 1;
-    //howManyDeck = (rand() % 8) + 1;
+    //howManyDeck = 1;
+    howManyDeck = (rand() % 1) + 8;
     createDeck();
     shuffle();
 }
