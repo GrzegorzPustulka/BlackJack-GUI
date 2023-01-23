@@ -13,7 +13,7 @@ We have several game options to choose from as in classic BlackJack:
 
 <b>Double down</b>: Double the wager, take exactly one more card, and then stand. 
 
-<b>Insurance/<b>: It's a side bet, which is offered to the players when the dealer’s up card is an ace. Takes an additional half of the chips plac                                It insures the player against the dealer having a ‘blackjack’ and gives them a chance to break even on the hand, if the dealer’s                                cards total 21.
+<b>Insurance</b>: It's a side bet, which is offered to the players when the dealer’s up card is an ace. Takes an additional half of the chips plac                                It insures the player against the dealer having a ‘blackjack’ and gives them a chance to break even on the hand, if the dealer’s                                cards total 21.
 
 ## Screens shots
 
