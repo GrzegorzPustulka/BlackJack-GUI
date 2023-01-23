@@ -6,6 +6,7 @@ It is an implementation of the popular BlackJack casino game made in c++ using l
 
 ## Screens shots
 Menu
+
 <img
   src="/pictures/menu.png"
   alt="Menu"
@@ -13,7 +14,9 @@ Menu
   width="500"
   height="375"
   style="display: inline-block; margin: 0 auto">
+  
 Bet
+
 <img
   src="/pictures/bet.png"
   alt="bet"
@@ -23,6 +26,7 @@ Bet
   style="display: inline-block; margin: 0 auto">
   
 End Result
+
 <img
   src="/pictures/result.png"
   alt="bet"
@@ -32,6 +36,7 @@ End Result
   style="display: inline-block; margin: 0 auto">
   
 Choose
+
 <img
   src="/pictures/choose.png"
   alt="bet"
