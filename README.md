@@ -1,6 +1,6 @@
 # BlackJack-GUI
 
-It is an implementation of the popular BlackJack casino game made in c++ using libary QT to make the graphical user interface.
+It is an implementation of the popular BlackJack casino game made in c++ using QT to make the graphical user interface.
 
 ## Rules
 
